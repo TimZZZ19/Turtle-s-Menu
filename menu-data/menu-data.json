@@ -30,12 +30,12 @@
       {
         "name": "Buffalo Chicken Slider",
         "description": "With blue cheese. 3 sliders per serving",
-        "prices": 9.95
+        "price": 9.95
       },
       {
         "name": "Hamburger Slider",
         "description": "3 sliders per serving",
-        "prices": 9.95
+        "price": 9.95
       },
       {
         "name": "House-Cut Fries",
@@ -45,11 +45,11 @@
       {
         "name": "Pulled Pork Slider",
         "description": "3 sliders per serving",
-        "prices": 8.95
+        "price": 8.95
       },
       {
         "name": "Mozzarella Sticks",
-        "prices": 7.95
+        "price": 7.95
       },
       {
         "name": "Fried Calamari",
@@ -120,57 +120,57 @@
       {
         "name": "House-Made Hamburger",
         "description": "One-pound house-made hamburger served with pretzel bun",
-        "prices": 9.95
+        "price": 9.95
       },
       {
         "name": "Italian Hamburger",
         "description": "Turtle's house-made burger topped with procsiutto, provolone and marinara sauce served on garlic bread",
-        "prices": 9.95
+        "price": 9.95
       },
       {
         "name": "Italian Meatball",
         "description": "House-made Italian meatballs served with marinara sauce",
-        "prices": 9.95
+        "price": 9.95
       },
       {
         "name": "Italian Beef",
         "description": "Italian beef served with Au Jus or marinara",
-        "prices": 9.95
+        "price": 9.95
       },
       {
         "name": "Italian Sausage",
         "description": "Spicy Italian sausage served with Au Jus or marinara",
-        "prices": 9.5
+        "price": 9.5
       },
       {
         "name": "Italian Grilled Chicken",
         "description": "Grilled chicken topped with Italian style sweet pepper, served on garlic bread",
-        "prices": 8.95
+        "price": 8.95
       },
       {
         "name": "Italian Combo",
         "description": "Grilled Italian sausage and beef served with Au Jus or marinara",
-        "prices": 9.95
+        "price": 9.95
       },
       {
         "name": "Grilled Steak Sandwich",
         "description": "Grilled steak topped with lettuce, tomato and onion, served on garlic bread",
-        "prices": 12.95
+        "price": 12.95
       },
       {
         "name": "Eggplant Parmesan",
         "description": "House-made eggplant topped with mozzarella cheese and marinara",
-        "prices": 8.95
+        "price": 8.95
       },
       {
         "name": "Chicken Parmesan",
         "description": "Pan seared breaded chicken topped with mozzarella cheese and marinara sauce",
-        "prices": 9.95
+        "price": 9.95
       },
       {
         "name": "BBQ Pulled Pork",
         "description": "Slow braised pork shoulder tossed in BBQ sauce and served on brioche bread",
-        "prices": 8.95
+        "price": 8.95
       }
     ]
   },

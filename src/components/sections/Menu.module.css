@@ -21,3 +21,11 @@
 .menu-navbar__link:hover {
   color: #555;
 }
+
+.menu-area {
+  display: flex;
+  flex-direction: column;
+  gap: 10rem;
+
+  padding: 10rem 0;
+}

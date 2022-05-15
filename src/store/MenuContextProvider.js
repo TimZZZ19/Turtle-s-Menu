@@ -17,7 +17,6 @@ export default function MenuContextProvider({ children }) {
         console.log(error);
       });
   }, []);
-
   const menuContext = { menuItems };
 
   return (

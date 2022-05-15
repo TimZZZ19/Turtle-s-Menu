@@ -1,0 +1,39 @@
+.menu-category {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  border-bottom: 0.1rem solid #ccc;
+  padding-bottom: 10rem;
+
+  width: 94rem;
+  margin: 0 auto;
+}
+
+/* .menu-category:last-child {
+  width: 50rem;
+} */
+
+.category-description {
+  font-weight: 300;
+  /* width: 30rem; */
+  padding: 0 18rem;
+}
+
+.menu-items-ul {
+  margin-top: 5rem;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 10rem;
+  column-gap: 20rem;
+}
+
+/* The Pizza section should have only one column, 
+   and should be much narrower*/
+.menu-category:last-child ul {
+  width: 50rem;
+  margin: 5rem auto 0;
+  grid-template-columns: 1fr;
+}
