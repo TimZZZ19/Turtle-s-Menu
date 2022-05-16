@@ -242,17 +242,17 @@
     "items": [
       {
         "name": "Personal Cheese",
-        "extras": [{ "name": "Additionl topping", "price": 0.75 }],
+        "extras": [{ "name": "additionl topping", "price": 0.75 }],
         "price": 6.0
       },
       {
         "name": "14-ince Cheese",
-        "extras": [{ "name": "Additionl topping", "price": 1.0 }],
+        "extras": [{ "name": "additionl topping", "price": 1.0 }],
         "price": 11.0
       },
       {
         "name": "16-ince Personal Cheese",
-        "extras": [{ "name": "Additionl topping", "price": 1.25 }],
+        "extras": [{ "name": "additionl topping", "price": 1.25 }],
         "price": 13.25
       }
     ]

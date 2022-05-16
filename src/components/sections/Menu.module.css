@@ -6,6 +6,9 @@
   height: 4rem;
   background-color: #b98f71;
 
+  position: sticky;
+  top: 10rem;
+
   display: flex;
   align-items: center;
   justify-content: space-around;

@@ -20,3 +20,34 @@
   text-align: left;
   width: 28rem;
 }
+
+/* Order button */
+.order-btn {
+  border: none;
+  cursor: pointer;
+
+  border-radius: 1.6rem;
+  padding: 1rem;
+
+  width: 6rem;
+  height: 3rem;
+
+  align-self: end;
+  justify-self: end;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #8b4513;
+  color: white;
+
+  box-shadow: 0 5px 5px rgba(78, 78, 78, 0.6);
+  transition: all 0.3s;
+}
+
+.order-btn:hover {
+  /* background-color: #61300d; */
+  transform: translateY(-0.3rem);
+  box-shadow: 0 10px 20px rgba(78, 78, 78, 0.6);
+}
