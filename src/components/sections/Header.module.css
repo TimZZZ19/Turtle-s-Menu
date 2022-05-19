@@ -35,6 +35,13 @@
   transform: translateY(-0.5rem);
 }
 
+.cart-btn:active {
+  background-color: #442209;
+}
+.cart-btn:hover {
+  transform: translateY(-0.5rem);
+}
+
 /* Cart Button Content */
 .cart-btn__content {
   width: 10rem;

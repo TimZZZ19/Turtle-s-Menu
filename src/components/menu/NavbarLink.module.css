@@ -10,6 +10,10 @@
   color: #ccc;
 }
 
+.menu-navbar__link:active {
+  color: #555;
+}
+
 .active-link {
   border-bottom: 0.1rem solid white;
 }
