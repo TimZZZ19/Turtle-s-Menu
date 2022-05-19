@@ -2,12 +2,7 @@ import React, { useRef, useEffect } from "react";
 import styles from "./MenuCategory.module.css";
 import MenuItem from "./MenuItem";
 
-const MenuCategory = ({
-  category,
-  indicatorObserver,
-  // revealingObserver,
-  // currentCategory,
-}) => {
+const MenuCategory = ({ category, indicatorObserver }) => {
   const categoryRef = useRef(null);
   const { name, items, description, dressings, substitutes, extras, toppings } =
     category;
@@ -22,19 +17,6 @@ const MenuCategory = ({
     const currentTarget = categoryRef.current;
     if (currentTarget) indicatorObserver.observe(categoryRef.current);
   }, [categoryRef]);
-
-  // Revealing observer
-  // useEffect(() => {
-  //   const currentTarget = categoryRef.current;
-  //   if (currentTarget) revealingObserver.observe(currentTarget);
-  // }, [categoryRef]);
-
-  // let secondaryClass = `${styles["category-hidden"]}`;
-  // if (`${name.toLowerCase().replace(" ", "")}` === currentCategory) {
-  //   secondaryClass = "";
-  //   // console.log(`${name.toLowerCase().replace(" ", "")}`);
-  //   // console.log(currentCategory);
-  // }
 
   return (
     <div

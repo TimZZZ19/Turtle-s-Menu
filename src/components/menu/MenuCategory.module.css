@@ -13,18 +13,8 @@
   transition: all 0.6s;
 }
 
-.category-hidden {
-  opacity: 0;
-  transform: translateY(2rem);
-}
-
-/* .menu-category:last-child {
-  width: 50rem;
-} */
-
 .category-description {
   font-weight: 300;
-  /* width: 30rem; */
   padding: 0 18rem;
 }
 

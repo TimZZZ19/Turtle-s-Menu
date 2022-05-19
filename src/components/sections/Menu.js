@@ -32,8 +32,6 @@ export default function Menu() {
       key={Math.random()}
       category={category}
       indicatorObserver={indicatorObserver}
-      // revealingObserver={revealingObserver}
-      // currentCategory={currentCategory}
     />
   ));
 
