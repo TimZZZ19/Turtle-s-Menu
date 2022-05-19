@@ -25,8 +25,14 @@
   cursor: pointer;
   border: none;
   border-radius: 3.6rem;
-  background-color: #b98f71;
+  background-color: #61300d;
   color: white;
+
+  transition: transform 0.3s;
+}
+
+.cart-btn:hover {
+  transform: translateY(-0.5rem);
 }
 
 /* Cart Button Content */

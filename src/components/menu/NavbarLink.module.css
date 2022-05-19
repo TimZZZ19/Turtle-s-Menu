@@ -1,0 +1,15 @@
+.menu-navbar__link {
+  font-size: 1.8rem;
+  color: white;
+  cursor: pointer;
+  transition: color 0.2s;
+  text-decoration: none;
+}
+
+.menu-navbar__link:hover {
+  color: #ccc;
+}
+
+.active-link {
+  border-bottom: 0.1rem solid white;
+}
