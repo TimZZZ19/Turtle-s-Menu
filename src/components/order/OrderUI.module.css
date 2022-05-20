@@ -1,0 +1,33 @@
+.order-UI-container {
+  background-color: white;
+  width: 42rem;
+  height: 50rem;
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+.close-btn {
+  font-size: 3.8rem;
+  width: 3.8rem;
+  height: 3.8rem;
+
+  color: #555;
+  background-color: #ccc;
+  opacity: 0.6;
+
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  cursor: pointer;
+
+  transition: color 0.3s;
+}
+
+.close-btn:hover {
+  color: black;
+}

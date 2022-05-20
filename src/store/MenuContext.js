@@ -1,5 +1,10 @@
 import React from "react";
 
-const MenuContext = React.createContext({ menuItems: [] });
+const MenuContext = React.createContext({
+  menuItems: [],
+  orderPageIsOpen: false,
+  openOrderPage: () => {},
+  closeOrderPage: () => {},
+});
 
 export default MenuContext;

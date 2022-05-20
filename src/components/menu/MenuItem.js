@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./MenuItem.module.css";
 import AddOns from "./AddOns";
+import MenuContext from "../../store/MenuContext";
 
 export default function MenuItem({ item }) {
   const { name, description, price, prices, substitutes, extras } = item;
+  const menuContext = useContext(MenuContext);
 
+  // Food item price
   let priceInfo = (
     <p className={styles["item-price"]}>{Number(price).toFixed(2)}</p>
   );
@@ -19,6 +22,7 @@ export default function MenuItem({ item }) {
     );
   }
 
+  // Food item add-ons, such as substitutes, extra chicken, etc.
   let addOns;
   let itemSecondaryClass;
 
@@ -38,7 +42,12 @@ export default function MenuItem({ item }) {
       {priceInfo}
       <p className={styles["item-description"]}>{description}</p>
       {addOns}
-      <button className={styles["order-btn"]}>Add</button>
+      <button
+        onClick={menuContext.openOrderPage}
+        className={styles["order-btn"]}
+      >
+        Add
+      </button>
     </li>
   );
 }
