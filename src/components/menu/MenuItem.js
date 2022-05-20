@@ -6,6 +6,7 @@ import MenuContext from "../../store/MenuContext";
 export default function MenuItem({ item }) {
   const { name, description, price, prices, substitutes, extras } = item;
   const menuContext = useContext(MenuContext);
+  console.log(name);
 
   // Food item price
   let priceInfo = (
