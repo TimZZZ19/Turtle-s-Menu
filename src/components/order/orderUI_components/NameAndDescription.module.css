@@ -1,0 +1,10 @@
+/* Name and Description */
+.name-and-description {
+  padding: 3rem;
+  border-bottom: 0.2rem solid #ccc;
+}
+
+.name {
+  font-style: italic;
+  margin-bottom: 1rem;
+}

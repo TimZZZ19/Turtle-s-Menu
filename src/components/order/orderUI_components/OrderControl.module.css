@@ -1,0 +1,50 @@
+/* Order control */
+.order-control {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Quantity Control and Price */
+.qty-control-and-price {
+  display: flex;
+  justify-content: space-between;
+}
+
+.qty-control {
+  width: 15rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.qty-btns {
+  display: flex;
+  align-items: center;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+.qty-number {
+  width: 3rem;
+  text-align: center;
+}
+
+/* Add Button */
+.add-btn {
+  align-self: center;
+  width: 18rem;
+  height: 3.6rem;
+  border: none;
+  border-radius: 1.5rem;
+  font-size: 1.8rem;
+  background-color: #8b4513;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-btn--inactive {
+  background-color: #b98f71;
+  cursor: auto;
+}

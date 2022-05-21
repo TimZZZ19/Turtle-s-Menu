@@ -1,0 +1,10 @@
+/* Image */
+.food-img {
+  width: 100%;
+  max-height: 28rem;
+  overflow: hidden;
+}
+
+.food-img img {
+  width: 100%;
+}
