@@ -6,7 +6,6 @@ import MenuContext from "../../store/MenuContext";
 export default function MenuItem({ item }) {
   const { name, description, price, prices, substitutes, extras } = item;
   const menuContext = useContext(MenuContext);
-  console.log(name);
 
   // Food item price
   let priceInfo = (
@@ -37,16 +36,18 @@ export default function MenuItem({ item }) {
     addOns = <AddOns addOns={extras} />;
   }
 
+  // Log current menu item to the cnotext API
+  const setCurrentMenuItem = () => {
+    menuContext.openOrderPage(item);
+  };
+
   return (
     <li className={`${styles["menu-item"]} ${itemSecondaryClass}`}>
       <h4 className={styles["item-name"]}>{name}</h4>
       {priceInfo}
       <p className={styles["item-description"]}>{description}</p>
       {addOns}
-      <button
-        onClick={menuContext.openOrderPage}
-        className={styles["order-btn"]}
-      >
+      <button onClick={setCurrentMenuItem} className={styles["order-btn"]}>
         Add
       </button>
     </li>

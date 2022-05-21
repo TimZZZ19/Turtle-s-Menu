@@ -5,17 +5,21 @@ export default function MenuContextProvider({ children }) {
   const [menuItems, setMenuItems] = useState([]);
   const [orderPageIsOpen, setOrderPageIsOpen] = useState(false);
 
+  const [currentMenuItem, setCurrentMenuItem] = useState({});
+
   // Select the html element for freezing and unfreezing the page
   const htmlTag = document.getElementsByTagName("html");
 
   // Open and close the order page
-  const openOrderPage = () => {
+  const openOrderPage = (item) => {
+    setCurrentMenuItem(item); // When page is open, we much know what the current menu item is
     setOrderPageIsOpen(true);
     // freeze scrolling
     htmlTag[0].style.height = "100%";
     htmlTag[0].style.overflowY = "hidden";
   };
   const closeOrderPage = () => {
+    setCurrentMenuItem({}); // Set currentItem back to empty just in case
     setOrderPageIsOpen(false);
     // unfreeze scrolling
     htmlTag[0].style.height = null;
@@ -38,6 +42,7 @@ export default function MenuContextProvider({ children }) {
 
   const menuContext = {
     menuItems,
+    currentMenuItem,
     orderPageIsOpen,
     openOrderPage,
     closeOrderPage,

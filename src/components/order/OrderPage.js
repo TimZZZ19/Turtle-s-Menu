@@ -12,7 +12,10 @@ export default function OrderPage() {
   return ReactDom.createPortal(
     <>
       <Overlay />
-      <OrderUI closeCart={menuContext.closeOrderPage} />
+      <OrderUI
+        closeCart={menuContext.closeOrderPage}
+        currentMenuItem={menuContext.currentMenuItem}
+      />
     </>,
     document.getElementById("portal")
   );
