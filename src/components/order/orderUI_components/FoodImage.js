@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./FoodImage.module.css";
 
-export default function FoodImage({ name }) {
+export default React.memo(function FoodImage({ name }) {
   // Image attributes
   const imgSrc = `./images/${name.split(" ").join("")}.jpg`;
   const imgAlt = `image of ${name}`;
@@ -10,4 +10,4 @@ export default function FoodImage({ name }) {
       <img src={imgSrc} alt={imgAlt} />
     </div>
   );
-}
+});

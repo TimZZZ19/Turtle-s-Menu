@@ -1,10 +1,14 @@
 /* Name and Description */
 .name-and-description {
-  padding: 3rem;
+  padding: 2rem 3rem;
   border-bottom: 0.2rem solid #ccc;
 }
 
 .name {
   font-style: italic;
   margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1.6rem;
 }
