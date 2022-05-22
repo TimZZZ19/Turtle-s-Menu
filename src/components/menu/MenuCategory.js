@@ -11,8 +11,15 @@ const MenuCategory = ({ category, indicatorObserver }) => {
   // then add them to each item under this category
   if (substitutes) {
     items.forEach((item) => {
-      item.categorySubstitutes = substitutes; // add them as "categorySubsitutes" instead of
-      // "substitutes", because we don't want to let appear as an item's regular substitutes.
+      item.categorySubstitutes = { ...substitutes }; // add them as "categorySubsitutes" instead of
+      // "substitutes", because we don't want to let them appear as an item's regular substitutes.
+    });
+  }
+
+  // Same goes for extras
+  if (extras) {
+    items.forEach((item) => {
+      item.categoryExtras = { ...extras };
     });
   }
 

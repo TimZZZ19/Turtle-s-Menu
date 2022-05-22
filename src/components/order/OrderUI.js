@@ -4,7 +4,7 @@ import NameAndDescription from "./orderUI_components/NameAndDescription";
 import OrderUIContainer from "./orderUI_components/OrderUIContainer";
 import OrderControl from "./orderUI_components/OrderControl";
 import SizeOptions from "./orderUI_components/SizeOptions";
-import Substitutes from "./orderUI_components/Substitutes";
+import OrderAddOns from "./orderUI_components/OrderAddOns";
 import useAddOns from "../../hooks/useAddOns";
 
 export default function OrderUI({ closeCart, currentMenuItem }) {
@@ -16,6 +16,7 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
     substitutes,
     categorySubstitutes,
     extras,
+    categoryExtras,
   } = currentMenuItem;
 
   const [qty, setQty] = useState(0);
@@ -46,9 +47,16 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
   );
 
   //************* */
+  // EXTRAS
+  //************* */
+  const [mergedExtras, chozenExtras, handleExtras] = useAddOns(
+    extras,
+    categoryExtras
+  );
+
+  //************* */
   // ORDER CONTROL
   //************* */
-
   // Set item quantity
   const handleQty = useCallback((e) => {
     const clickedId = e.target.getAttribute("id");
@@ -75,17 +83,30 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
       });
     }
 
+    // extras
+    if (chozenExtras.length) {
+      chozenExtras.forEach((key) => {
+        result += mergedExtras[key];
+      });
+    }
+
     return result;
-  }, [sizePrice, chozenSubstitutes]);
+  }, [sizePrice, chozenSubstitutes, chozenExtras]);
 
   return (
     <OrderUIContainer closeCart={closeCart}>
       <FoodImage name={name} />
       <NameAndDescription name={name} description={description} />
       <SizeOptions availableSizes={availableSizes} handleSize={handleSize} />
-      <Substitutes
-        substitutes={mergedSubstitutes}
-        handleSubstitutes={handleSubstitutes}
+      <OrderAddOns
+        addOnType={"substitutes"}
+        addOns={mergedSubstitutes}
+        handleAddOns={handleSubstitutes}
+      />
+      <OrderAddOns
+        addOnType={"extras"}
+        addOns={mergedExtras}
+        handleAddOns={handleExtras}
       />
       <OrderControl qty={qty} unitPrice={unitPrice} handleQty={handleQty} />
     </OrderUIContainer>
