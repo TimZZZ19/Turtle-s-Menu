@@ -5,12 +5,9 @@ import OrderUIContainer from "./orderUI_components/OrderUIContainer";
 import OrderControl from "./orderUI_components/OrderControl";
 import SizeOptions from "./orderUI_components/SizeOptions";
 import Substitutes from "./orderUI_components/Substitutes";
+import useAddOns from "../../hooks/useAddOns";
 
 export default function OrderUI({ closeCart, currentMenuItem }) {
-  const [qty, setQty] = useState(0);
-  const [sizePrice, setSizePrice] = useState(0); // price for the chozen size
-  const [chozenSubstitutes, setChozenSubstitutes] = useState([]);
-
   const {
     name,
     description,
@@ -20,6 +17,9 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
     categorySubstitutes,
     extras,
   } = currentMenuItem;
+
+  const [qty, setQty] = useState(0);
+  const [sizePrice, setSizePrice] = useState(0); // price for the chozen size
 
   //************* */
   // SIZE OPTIONS
@@ -40,25 +40,10 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
   //************* */
   // SUBSTITUTES
   //************* */
-  const mergedSubstitutes = useMemo(() => {
-    return categorySubstitutes
-      ? { ...substitutes, ...categorySubstitutes }
-      : { ...substitutes };
-  }, [substitutes, categorySubstitutes]);
-
-  const handleSubstitutes = useCallback((e) => {
-    const clickedSubstitute = e.target.getAttribute("identifier");
-
-    if (e.target.checked) {
-      setChozenSubstitutes((prevState) => {
-        return [...prevState, clickedSubstitute];
-      });
-    } else {
-      setChozenSubstitutes((prevState) => {
-        return prevState.filter((el) => el !== clickedSubstitute);
-      });
-    }
-  }, []);
+  const [mergedSubstitutes, chozenSubstitutes, handleSubstitutes] = useAddOns(
+    substitutes,
+    categorySubstitutes
+  );
 
   //************* */
   // ORDER CONTROL
