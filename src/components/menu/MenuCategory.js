@@ -7,6 +7,15 @@ const MenuCategory = ({ category, indicatorObserver }) => {
   const { name, items, description, dressings, substitutes, extras, toppings } =
     category;
 
+  // if substitutes are available for this category,
+  // then add them to each item under this category
+  if (substitutes) {
+    items.forEach((item) => {
+      item.categorySubstitutes = substitutes; // add them as "categorySubsitutes" instead of
+      // "substitutes", because we don't want to let appear as an item's regular substitutes.
+    });
+  }
+
   // Menu item list
   const menuItemList = items.map((item) => (
     <MenuItem key={Math.random()} item={item} />

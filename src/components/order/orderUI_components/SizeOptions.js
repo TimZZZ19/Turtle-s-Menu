@@ -1,10 +1,9 @@
 import React, { useRef } from "react";
+import MenuItemContainer from "../../reusables/MenuItemContainer";
 import styles from "./SizeOptions.module.css";
 
 export default React.memo(function SizeOptions({ availableSizes, handleSize }) {
-  if (!availableSizes) return;
-
-  console.log("run again");
+  if (availableSizes.length === 0) return;
 
   const sizes = availableSizes.map((size) => (
     <span key={Math.random()} className={styles.size}>
@@ -14,9 +13,9 @@ export default React.memo(function SizeOptions({ availableSizes, handleSize }) {
   ));
 
   return (
-    <div className={styles["size-options"]}>
+    <MenuItemContainer>
       <p>Choose your size : </p>
       <div className={styles.sizes}>{sizes}</div>
-    </div>
+    </MenuItemContainer>
   );
 });

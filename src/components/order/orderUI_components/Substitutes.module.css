@@ -1,0 +1,17 @@
+.substitutes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.substitute-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.6rem;
+}
+
+.substitute-checkbox {
+  margin-left: 2rem;
+  margin-right: 1.5rem;
+}

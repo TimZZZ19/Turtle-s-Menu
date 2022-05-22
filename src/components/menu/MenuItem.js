@@ -28,16 +28,16 @@ export default function MenuItem({ item }) {
 
   if (substitutes) {
     itemSecondaryClass = styles["menu-item--with-add-ons"];
-    addOns = addOns = <AddOns addOns={substitutes} />;
+    addOns = <AddOns verb="With" addOns={substitutes} />;
   }
 
   if (extras) {
     itemSecondaryClass = styles["menu-item--with-add-ons"];
-    addOns = <AddOns addOns={extras} />;
+    addOns = <AddOns verb="Add" addOns={extras} />;
   }
 
-  // Log current menu item to the cnotext API
-  const setCurrentMenuItem = () => {
+  // Open the order UI and also pass it the info that needs to be rendered on it
+  const openOrderPage = () => {
     menuContext.openOrderPage(item);
   };
 
@@ -47,7 +47,7 @@ export default function MenuItem({ item }) {
       {priceInfo}
       <p className={styles["item-description"]}>{description}</p>
       {addOns}
-      <button onClick={setCurrentMenuItem} className={styles["order-btn"]}>
+      <button onClick={openOrderPage} className={styles["order-btn"]}>
         Add
       </button>
     </li>
