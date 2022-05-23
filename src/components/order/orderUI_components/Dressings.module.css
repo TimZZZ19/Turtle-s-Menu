@@ -1,0 +1,9 @@
+.dressings-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dressings-list {
+  width: 11rem;
+  font-size: 1.4rem;
+}

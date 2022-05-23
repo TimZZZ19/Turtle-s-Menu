@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useMemo } from "react";
+import React, { useCallback, useState, useMemo, useEffect } from "react";
 import FoodImage from "./orderUI_components/FoodImage";
 import NameAndDescription from "./orderUI_components/NameAndDescription";
 import OrderUIContainer from "./orderUI_components/OrderUIContainer";
@@ -6,6 +6,8 @@ import OrderControl from "./orderUI_components/OrderControl";
 import SizeOptions from "./orderUI_components/SizeOptions";
 import OrderAddOns from "./orderUI_components/OrderAddOns";
 import useAddOns from "../../hooks/useAddOns";
+import Dressings from "./orderUI_components/Dressings";
+import { click } from "@testing-library/user-event/dist/click";
 
 export default function OrderUI({ closeCart, currentMenuItem }) {
   const {
@@ -13,18 +15,18 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
     description,
     price,
     prices,
+    categoryDressings,
     substitutes,
     categorySubstitutes,
     extras,
     categoryExtras,
   } = currentMenuItem;
 
-  const [qty, setQty] = useState(0);
-  const [sizePrice, setSizePrice] = useState(0); // price for the chozen size
-
   //************* */
   // SIZE OPTIONS
   //************* */
+  const [sizePrice, setSizePrice] = useState(0); // price for the chozen size
+
   // get different sizes from the prices object
   const availableSizes = useMemo(
     () => (prices ? Object.keys(prices).reverse() : []),
@@ -37,6 +39,15 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
     const sizePrice = prices[chozenSize];
     setSizePrice(sizePrice);
   }, []);
+
+  //************* */
+  // DRESSINGS
+  //************* */
+  const [chozenDressing, setChozenDressing] = useState("--- ---");
+  const handleDressings = useCallback(
+    (e) => setChozenDressing(e.target.value),
+    []
+  );
 
   //************* */
   // SUBSTITUTES
@@ -57,6 +68,8 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
   //************* */
   // ORDER CONTROL
   //************* */
+  const [qty, setQty] = useState(0);
+
   // Set item quantity
   const handleQty = useCallback((e) => {
     const clickedId = e.target.getAttribute("id");
@@ -71,6 +84,9 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
     }
   }, []);
 
+  //************* */
+  // FINAL UNIT PRICE
+  //************* */
   // Calculate unit price by taking all factors into consideration
   const unitPrice = useMemo(() => {
     // size options
@@ -98,13 +114,20 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
       <FoodImage name={name} />
       <NameAndDescription name={name} description={description} />
       <SizeOptions availableSizes={availableSizes} handleSize={handleSize} />
+      {/* <Dressings /> */}
+      <Dressings
+        dressings={categoryDressings}
+        handleDressings={handleDressings}
+      />
+      {/* substitutes */}
       <OrderAddOns
-        addOnType={"substitutes"}
+        headingText={"Substitute options"}
         addOns={mergedSubstitutes}
         handleAddOns={handleSubstitutes}
       />
+      {/* extras */}
       <OrderAddOns
-        addOnType={"extras"}
+        headingText={"Add extra"}
         addOns={mergedExtras}
         handleAddOns={handleExtras}
       />

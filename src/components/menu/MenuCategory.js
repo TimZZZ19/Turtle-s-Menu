@@ -1,27 +1,36 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useCallback } from "react";
 import styles from "./MenuCategory.module.css";
 import MenuItem from "./MenuItem";
+
+const addCategoryConstitutes = (constitutes, type, items) => {
+  const propertyName = `category${capitalize(type)}`;
+  if (constitutes) {
+    items.forEach((item) => {
+      item[propertyName] =
+        type === "dressings" || type === "pastas"
+          ? [...constitutes]
+          : { ...constitutes };
+    });
+  }
+
+  function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+};
 
 const MenuCategory = ({ category, indicatorObserver }) => {
   const categoryRef = useRef(null);
   const { name, items, description, dressings, substitutes, extras, toppings } =
     category;
 
-  // if substitutes are available for this category,
-  // then add them to each item under this category
-  if (substitutes) {
-    items.forEach((item) => {
-      item.categorySubstitutes = { ...substitutes }; // add them as "categorySubsitutes" instead of
-      // "substitutes", because we don't want to let them appear as an item's regular substitutes.
-    });
-  }
+  // Add category constitutes
 
-  // Same goes for extras
-  if (extras) {
-    items.forEach((item) => {
-      item.categoryExtras = { ...extras };
-    });
-  }
+  // substitutes
+  addCategoryConstitutes(substitutes, "substitutes", items);
+  //extras
+  addCategoryConstitutes(extras, "extras", items);
+  // dressings
+  addCategoryConstitutes(dressings, "dressings", items);
 
   // Menu item list
   const menuItemList = items.map((item) => (

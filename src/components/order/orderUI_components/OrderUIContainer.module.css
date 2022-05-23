@@ -1,13 +1,13 @@
 .order-UI-container {
   background-color: white;
   width: 38rem;
-  max-height: 70rem;
+  max-height: 65rem;
   position: fixed;
   top: 10%;
   left: 50%;
   transform: translateX(-50%);
   border-radius: 1.5rem;
-  overflow: hidden;
+  overflow-y: scroll;
 }
 
 .close-btn {

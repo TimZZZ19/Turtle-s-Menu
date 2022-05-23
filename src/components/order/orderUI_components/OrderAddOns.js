@@ -1,9 +1,9 @@
 import React from "react";
-import MenuItemContainer from "../../reusables/MenuItemContainer";
+import OrderItemContainer from "../../reusables/OrderItemContainer";
 import styles from "./OrderAddOns.module.css";
 
 export default React.memo(function OrderAddOns({
-  addOnType,
+  headingText,
   addOns,
   handleAddOns,
 }) {
@@ -31,9 +31,9 @@ export default React.memo(function OrderAddOns({
   ));
 
   return (
-    <MenuItemContainer>
-      <p>{`Choose your ${addOnType} :`}</p>
+    <OrderItemContainer>
+      <p>{headingText} :</p>
       <div className={styles.addOns}>{addOnContent}</div>
-    </MenuItemContainer>
+    </OrderItemContainer>
   );
 });

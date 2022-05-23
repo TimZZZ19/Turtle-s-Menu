@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import MenuItemContainer from "../../reusables/MenuItemContainer";
+import OrderItemContainer from "../../reusables/OrderItemContainer";
 import styles from "./SizeOptions.module.css";
 
 export default React.memo(function SizeOptions({ availableSizes, handleSize }) {
@@ -13,9 +13,9 @@ export default React.memo(function SizeOptions({ availableSizes, handleSize }) {
   ));
 
   return (
-    <MenuItemContainer>
+    <OrderItemContainer>
       <p>Choose your size : </p>
       <div className={styles.sizes}>{sizes}</div>
-    </MenuItemContainer>
+    </OrderItemContainer>
   );
 });
