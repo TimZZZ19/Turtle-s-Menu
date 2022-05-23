@@ -6,8 +6,7 @@ import OrderControl from "./orderUI_components/OrderControl";
 import SizeOptions from "./orderUI_components/SizeOptions";
 import OrderAddOns from "./orderUI_components/OrderAddOns";
 import useAddOns from "../../hooks/useAddOns";
-import Dressings from "./orderUI_components/Dressings";
-import { click } from "@testing-library/user-event/dist/click";
+import PrimaryIngredient from "./orderUI_components/PrimaryIngredient";
 
 export default function OrderUI({ closeCart, currentMenuItem }) {
   const {
@@ -16,6 +15,7 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
     price,
     prices,
     categoryDressings,
+    categoryPastas,
     substitutes,
     categorySubstitutes,
     extras,
@@ -44,10 +44,21 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
   // DRESSINGS
   //************* */
   const [chozenDressing, setChozenDressing] = useState("--- ---");
-  const handleDressings = useCallback(
+  const handleInputDressing = useCallback(
     (e) => setChozenDressing(e.target.value),
     []
   );
+
+  //************* */
+  //  PASTAS
+  //************* */
+  const [chozenPasta, setChozenPasta] = useState("--- ---");
+  const handleInputPasta = useCallback(
+    (e) => setChozenPasta(e.target.value),
+    []
+  );
+
+  console.log(chozenDressing, chozenPasta);
 
   //************* */
   // SUBSTITUTES
@@ -115,9 +126,15 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
       <NameAndDescription name={name} description={description} />
       <SizeOptions availableSizes={availableSizes} handleSize={handleSize} />
       {/* <Dressings /> */}
-      <Dressings
-        dressings={categoryDressings}
-        handleDressings={handleDressings}
+      <PrimaryIngredient
+        type={"dressings"}
+        primaryIngredients={categoryDressings}
+        handleInputIngredient={handleInputDressing}
+      />
+      {/* <Pastas /> */}
+      <PrimaryIngredient
+        primaryIngredients={categoryPastas}
+        handleInputIngredient={handleInputPasta}
       />
       {/* substitutes */}
       <OrderAddOns

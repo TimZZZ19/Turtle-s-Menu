@@ -20,8 +20,16 @@ const addCategoryConstitutes = (constitutes, type, items) => {
 
 const MenuCategory = ({ category, indicatorObserver }) => {
   const categoryRef = useRef(null);
-  const { name, items, description, dressings, substitutes, extras, toppings } =
-    category;
+  const {
+    name,
+    items,
+    description,
+    dressings,
+    pastas,
+    substitutes,
+    extras,
+    toppings,
+  } = category;
 
   // Add category constitutes
 
@@ -31,6 +39,8 @@ const MenuCategory = ({ category, indicatorObserver }) => {
   addCategoryConstitutes(extras, "extras", items);
   // dressings
   addCategoryConstitutes(dressings, "dressings", items);
+  // pastas
+  addCategoryConstitutes(pastas, "pastas", items);
 
   // Menu item list
   const menuItemList = items.map((item) => (
