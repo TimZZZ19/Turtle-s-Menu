@@ -7,11 +7,13 @@ import SizeOptions from "./orderUI_components/SizeOptions";
 import OrderAddOns from "./orderUI_components/OrderAddOns";
 import useAddOns from "../../hooks/useAddOns";
 import PrimaryIngredient from "./orderUI_components/PrimaryIngredient";
+import Toppings from "./orderUI_components/Toppings";
 
 export default function OrderUI({ closeCart, currentMenuItem }) {
   const {
     name,
     description,
+    category,
     price,
     prices,
     categoryDressings,
@@ -20,6 +22,8 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
     categorySubstitutes,
     extras,
     categoryExtras,
+    categoryToppings,
+    toppingPrice,
   } = currentMenuItem;
 
   //************* */
@@ -58,8 +62,6 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
     []
   );
 
-  console.log(chozenDressing, chozenPasta);
-
   //************* */
   // SUBSTITUTES
   //************* */
@@ -77,6 +79,26 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
   );
 
   //************* */
+  // TOPPPINGS
+  //************* */
+  const [chozenToppings, setChozenToppings] = useState({});
+  const handleChozenToppings = useCallback((topping, qty) => {
+    if (qty === 0) {
+      setChozenToppings((prevState) => {
+        const copy = { ...prevState };
+        delete copy[topping];
+        return copy;
+      });
+    } else {
+      setChozenToppings((prevState) => {
+        const currentToppingInfo = {};
+        currentToppingInfo[topping] = qty;
+        return { ...prevState, ...currentToppingInfo };
+      });
+    }
+  }, []);
+
+  //************* */
   // ORDER CONTROL
   //************* */
   const [qty, setQty] = useState(0);
@@ -84,7 +106,6 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
   // Set item quantity
   const handleQty = useCallback((e) => {
     const clickedId = e.target.getAttribute("id");
-
     switch (clickedId) {
       case "add":
         setQty((prevQty) => prevQty + 1);
@@ -117,8 +138,16 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
       });
     }
 
+    // toppings
+    const chozenToppingsKeys = Object.keys(chozenToppings);
+    if (chozenToppingsKeys.length) {
+      chozenToppingsKeys.forEach((key) => {
+        result += chozenToppings[key] * toppingPrice;
+      });
+    }
+
     return result;
-  }, [sizePrice, chozenSubstitutes, chozenExtras]);
+  }, [sizePrice, chozenSubstitutes, chozenExtras, chozenToppings]);
 
   return (
     <OrderUIContainer closeCart={closeCart}>
@@ -127,28 +156,42 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
       <SizeOptions availableSizes={availableSizes} handleSize={handleSize} />
       {/* <Dressings /> */}
       <PrimaryIngredient
-        type={"dressings"}
+        type={"dressing"}
         primaryIngredients={categoryDressings}
         handleInputIngredient={handleInputDressing}
       />
       {/* <Pastas /> */}
       <PrimaryIngredient
+        type={"pasta"}
         primaryIngredients={categoryPastas}
         handleInputIngredient={handleInputPasta}
       />
-      {/* substitutes */}
+      {/* Substitutes */}
       <OrderAddOns
         headingText={"Substitute options"}
         addOns={mergedSubstitutes}
         handleAddOns={handleSubstitutes}
       />
-      {/* extras */}
+      {/* Extras */}
       <OrderAddOns
         headingText={"Add extra"}
         addOns={mergedExtras}
         handleAddOns={handleExtras}
       />
-      <OrderControl qty={qty} unitPrice={unitPrice} handleQty={handleQty} />
+      {/* Toppings */}
+      <Toppings
+        toppings={categoryToppings}
+        handleChozenToppings={handleChozenToppings}
+      />
+      <OrderControl
+        qty={qty}
+        category={category}
+        chozenDressing={chozenDressing}
+        chozenPasta={chozenPasta}
+        chozenToppings={chozenToppings}
+        unitPrice={unitPrice}
+        handleQty={handleQty}
+      />
     </OrderUIContainer>
   );
 }

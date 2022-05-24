@@ -7,7 +7,7 @@ const addCategoryConstitutes = (constitutes, type, items) => {
   if (constitutes) {
     items.forEach((item) => {
       item[propertyName] =
-        type === "dressings" || type === "pastas"
+        type === "dressings" || type === "pastas" || type === "toppings"
           ? [...constitutes]
           : { ...constitutes };
     });
@@ -41,6 +41,13 @@ const MenuCategory = ({ category, indicatorObserver }) => {
   addCategoryConstitutes(dressings, "dressings", items);
   // pastas
   addCategoryConstitutes(pastas, "pastas", items);
+  // toppings
+  addCategoryConstitutes(toppings, "toppings", items);
+
+  // Also add category name to each item
+  items.forEach((item) => {
+    item["category"] = name;
+  });
 
   // Menu item list
   const menuItemList = items.map((item) => (

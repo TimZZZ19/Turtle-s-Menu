@@ -16,7 +16,7 @@ export default React.memo(function PrimaryIngredient({
   return (
     <OrderItemContainer>
       <div className={styles["container"]}>
-        <label htmlFor="dressings">Choose your dressing :</label>
+        <label>{`Choose a ${type} :`}</label>
         <select
           className={styles["list"]}
           id={type}
