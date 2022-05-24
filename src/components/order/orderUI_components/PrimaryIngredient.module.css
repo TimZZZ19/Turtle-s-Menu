@@ -7,3 +7,7 @@
   width: 11rem;
   font-size: 1.4rem;
 }
+
+.invalid {
+  color: red;
+}

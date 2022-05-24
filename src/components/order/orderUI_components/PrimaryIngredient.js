@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./PrimaryIngredient.module.css";
 import OrderItemContainer from "../../reusables/OrderItemContainer";
 
@@ -6,7 +6,23 @@ export default React.memo(function PrimaryIngredient({
   type,
   primaryIngredients,
   handleInputIngredient,
+  chozenPrimaryIngredient,
+  inputIsValid,
+  addHasBeenClicked,
 }) {
+  const [invalidClass, setInvalidClass] = useState(" ");
+  useEffect(() => {
+    if (addHasBeenClicked) {
+      if (inputIsValid) {
+        setInvalidClass(" ");
+      } else {
+        console.log(inputIsValid);
+
+        setInvalidClass(`${styles["invalid"]}`);
+      }
+    }
+  }, [addHasBeenClicked, inputIsValid]);
+
   if (!primaryIngredients) return;
 
   const optionList = primaryIngredients.map((ingredient) => (
@@ -16,12 +32,13 @@ export default React.memo(function PrimaryIngredient({
   return (
     <OrderItemContainer>
       <div className={styles["container"]}>
-        <label>{`Choose a ${type} :`}</label>
+        <label className={`${invalidClass}`}>{`Choose a ${type} :`}</label>
         <select
-          className={styles["list"]}
+          className={`${styles["list"]} `}
           id={type}
           name={type}
-          onClick={handleInputIngredient}
+          onChange={handleInputIngredient}
+          value={chozenPrimaryIngredient}
         >
           {optionList}
         </select>

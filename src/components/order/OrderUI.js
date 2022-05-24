@@ -8,6 +8,7 @@ import OrderAddOns from "./orderUI_components/OrderAddOns";
 import useAddOns from "../../hooks/useAddOns";
 import PrimaryIngredient from "./orderUI_components/PrimaryIngredient";
 import Toppings from "./orderUI_components/Toppings";
+import useFormValidity from "../../hooks/useFormValidity";
 
 export default function OrderUI({ closeCart, currentMenuItem }) {
   const {
@@ -149,6 +150,28 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
     return result;
   }, [sizePrice, chozenSubstitutes, chozenExtras, chozenToppings]);
 
+  //************* */
+  // FORM VALIDITY
+  //************* */
+  const [addHasBeenClicked, setAddHasBeenClicked] = useState(false);
+  const changeAddClickStatus = () => {
+    setAddHasBeenClicked(true);
+  };
+
+  const [
+    qtyIsValid,
+    dressingIsValid,
+    pastaIsValid,
+    toppingsAreValid,
+    formIsValid,
+  ] = useFormValidity(
+    qty,
+    category,
+    chozenDressing,
+    chozenPasta,
+    chozenToppings
+  );
+
   return (
     <OrderUIContainer closeCart={closeCart}>
       <FoodImage name={name} />
@@ -159,12 +182,18 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
         type={"dressing"}
         primaryIngredients={categoryDressings}
         handleInputIngredient={handleInputDressing}
+        chozenPrimaryIngredient={chozenDressing}
+        inputIsValid={dressingIsValid}
+        addHasBeenClicked={addHasBeenClicked}
       />
       {/* <Pastas /> */}
       <PrimaryIngredient
         type={"pasta"}
         primaryIngredients={categoryPastas}
         handleInputIngredient={handleInputPasta}
+        chozenPrimaryIngredient={chozenPasta}
+        inputIsValid={pastaIsValid}
+        addHasBeenClicked={addHasBeenClicked}
       />
       {/* Substitutes */}
       <OrderAddOns
@@ -179,16 +208,21 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
         handleAddOns={handleExtras}
       />
       {/* Toppings */}
-      <Toppings
-        toppings={categoryToppings}
-        handleChozenToppings={handleChozenToppings}
-      />
+      {categoryToppings && (
+        <Toppings
+          toppings={categoryToppings}
+          handleChozenToppings={handleChozenToppings}
+          toppingsAreValid={toppingsAreValid}
+          addHasBeenClicked={addHasBeenClicked}
+        />
+      )}
       <OrderControl
         qty={qty}
         category={category}
-        chozenDressing={chozenDressing}
-        chozenPasta={chozenPasta}
-        chozenToppings={chozenToppings}
+        qtyIsValid={qtyIsValid}
+        formIsValid={formIsValid}
+        addHasBeenClicked={addHasBeenClicked}
+        changeAddClickStatus={changeAddClickStatus}
         unitPrice={unitPrice}
         handleQty={handleQty}
       />

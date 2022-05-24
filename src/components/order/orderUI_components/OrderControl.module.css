@@ -37,6 +37,10 @@
   text-align: center;
 }
 
+.qty-invalid {
+  color: red;
+}
+
 /* Add Button */
 .add-btn {
   align-self: center;
