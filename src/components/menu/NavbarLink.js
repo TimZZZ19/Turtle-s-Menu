@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./NavbarLink.module.css";
 
-export default function NavbarLink({ categoryName, activeLink }) {
+export default React.memo(function NavbarLink({ categoryName, activeLink }) {
   const scrollPage = (e) => {
     e.preventDefault();
     const query = e.target.getAttribute("href");
@@ -26,4 +26,4 @@ export default function NavbarLink({ categoryName, activeLink }) {
       {categoryName}
     </a>
   );
-}
+});

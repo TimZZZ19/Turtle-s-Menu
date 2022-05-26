@@ -19,6 +19,8 @@ const addCategoryConstitutes = (constitutes, type, items) => {
 };
 
 const MenuCategory = ({ category, indicatorObserver }) => {
+  console.log("MenuCategory");
+
   const categoryRef = useRef(null);
   const {
     name,
@@ -73,4 +75,4 @@ const MenuCategory = ({ category, indicatorObserver }) => {
   );
 };
 
-export default MenuCategory;
+export default React.memo(MenuCategory);

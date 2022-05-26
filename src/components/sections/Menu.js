@@ -1,35 +1,41 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useMemo } from "react";
 import styles from "./Menu.module.css";
 import MenuContext from "../../store/MenuContext";
 import MenuCategory from "../menu/MenuCategory";
 import NavbarLink from "../menu/NavbarLink";
 import useIndicatorObserver from "../../hooks/useIndicatorObserver";
 
+// Navbar content
+const navbarLinks = [
+  { key: "l1", name: "Appetizers" },
+  { key: "l2", name: "Entrée Salads" },
+  { key: "l3", name: "Sandwiches" },
+  { key: "l4", name: "Pasta" },
+  { key: "l5", name: "Pizza" },
+];
+
 export default function Menu() {
   const [indicatorObserver, activeLink] = useIndicatorObserver();
 
-  // Navbar content
-  const navbarLinkNames = [
-    "Appetizers",
-    "Entrée Salads",
-    "Sandwiches",
-    "Pasta",
-    "Pizza",
-  ];
-  const navbarContent = navbarLinkNames.map((name) => (
+  // Navbar links
+  const navbarContent = navbarLinks.map((link) => (
     <NavbarLink
-      key={Math.random()}
-      categoryName={name}
+      key={link.key}
+      categoryName={link.name}
       activeLink={activeLink}
     />
   ));
 
   // MenuContent
   const menuContext = useContext(MenuContext);
-  const menuItems = menuContext.menuItems;
+  const menuItems = useMemo(
+    () => menuContext.menuItems,
+    [menuContext.menuItems]
+  );
+
   const menuContent = menuItems.map((category) => (
     <MenuCategory
-      key={Math.random()}
+      key={category.key}
       category={category}
       indicatorObserver={indicatorObserver}
     />

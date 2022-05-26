@@ -6,7 +6,6 @@ import OrderUI from "./OrderUI";
 
 export default function OrderPage() {
   const menuContext = useContext(MenuContext);
-
   if (!menuContext.orderPageIsOpen) return null;
 
   return ReactDom.createPortal(

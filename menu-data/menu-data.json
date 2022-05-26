@@ -1,6 +1,7 @@
 [
   {
     "name": "APPETIZERS",
+    "key": "c1",
     "items": [
       {
         "name": "Wings",
@@ -71,6 +72,7 @@
     "name": "ENTRÉE SALADS",
     "description": "Choice of dressing: ranch, Italian or balsamic blue cheese",
     "dressings": ["--- ---", "ranch", "Italian", "blue cheese"],
+    "key": "c2",
     "items": [
       {
         "name": "Italian Salad",
@@ -110,6 +112,7 @@
     "name": "SANDWICHES",
     "description": "All sandwiches served with house-cut fries or side salad, substitutes: garlic parmesan fries for 0.75 , Caesar salad for 1.50",
     "substitutes": { "garlic parmesan fries": 0.75, "Caesar salad": 1.5 },
+    "key": "c3",
     "items": [
       {
         "name": "House-Made Hamburger",
@@ -173,6 +176,7 @@
     "description": "Choose your  spaghetti, linguine, penne or bow tie. Add meatballs, neck bones, sausage, or chicken for 4.50",
     "pastas": ["--- ---", "spaghetti", "linguine", "penne", "bow tie"],
     "extras": { "meatballs": 4.5, "neck bones": 4.5, "chicken": 4.5 },
+    "key": "c4",
     "items": [
       {
         "name": "Marinara Sauce",
@@ -230,6 +234,7 @@
       "onions",
       "Buffalo chicken"
     ],
+    "key": "c5",
     "items": [
       {
         "name": "Personal Cheese",

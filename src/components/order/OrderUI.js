@@ -31,6 +31,7 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
   // SIZE OPTIONS
   //************* */
   const [sizePrice, setSizePrice] = useState(0); // price for the chozen size
+  const [chozenSize, setChozenSize] = useState("");
 
   // get different sizes from the prices object
   const availableSizes = useMemo(
@@ -42,6 +43,7 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
   const handleSize = useCallback((e) => {
     const chozenSize = e.target.getAttribute("id");
     const sizePrice = prices[chozenSize];
+    setChozenSize(chozenSize);
     setSizePrice(sizePrice);
   }, []);
 
@@ -172,6 +174,22 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
     chozenToppings
   );
 
+  //******************** */
+  // ADDD ORDER TO CART
+  //******************** */
+
+  const addOrderToCart = () => {
+    console.log(name);
+    console.log(qty);
+    console.log(unitPrice);
+    console.log(chozenSize);
+    console.log(chozenDressing);
+    console.log(chozenPasta);
+    console.log(chozenSubstitutes);
+    console.log(chozenExtras);
+    console.log(chozenToppings);
+  };
+
   return (
     <OrderUIContainer closeCart={closeCart}>
       <FoodImage name={name} />
@@ -223,6 +241,7 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
         formIsValid={formIsValid}
         addHasBeenClicked={addHasBeenClicked}
         changeAddClickStatus={changeAddClickStatus}
+        addOrderToCart={addOrderToCart}
         unitPrice={unitPrice}
         handleQty={handleQty}
       />

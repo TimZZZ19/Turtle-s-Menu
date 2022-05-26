@@ -16,8 +16,6 @@ export default React.memo(function PrimaryIngredient({
       if (inputIsValid) {
         setInvalidClass(" ");
       } else {
-        console.log(inputIsValid);
-
         setInvalidClass(`${styles["invalid"]}`);
       }
     }
