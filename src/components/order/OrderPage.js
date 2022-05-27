@@ -4,7 +4,7 @@ import Overlay from "../reusables/Overlay";
 import MenuContext from "../../store/MenuContext";
 import OrderUI from "./OrderUI";
 
-export default function OrderPage() {
+export default function OrderPage({ displayAddedMsg, hideAddedMsg }) {
   const menuContext = useContext(MenuContext);
   if (!menuContext.orderPageIsOpen) return null;
 
@@ -15,6 +15,8 @@ export default function OrderPage() {
         closeOrderUI={menuContext.closeOrderPage}
         currentMenuItem={menuContext.currentMenuItem}
         addItemToCart={menuContext.addItemToCart}
+        displayAddedMsg={displayAddedMsg}
+        hideAddedMsg={hideAddedMsg}
       />
     </>,
     document.getElementById("portal")

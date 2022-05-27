@@ -14,6 +14,8 @@ export default function OrderUI({
   closeOrderUI,
   currentMenuItem,
   addItemToCart,
+  displayAddedMsg,
+  hideAddedMsg,
 }) {
   const {
     name,
@@ -202,6 +204,12 @@ export default function OrderUI({
       newItem.chozenToppings = chozenToppings;
 
     addItemToCart(newItem);
+    setTimeout(() => {
+      displayAddedMsg();
+      setTimeout(() => {
+        hideAddedMsg();
+      }, 1500);
+    }, 500);
   };
 
   return (
