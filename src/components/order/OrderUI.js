@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useMemo, useEffect } from "react";
+import React, { useCallback, useState, useMemo } from "react";
 import FoodImage from "./orderUI_components/FoodImage";
 import NameAndDescription from "./orderUI_components/NameAndDescription";
 import OrderUIContainer from "./orderUI_components/OrderUIContainer";
@@ -10,7 +10,11 @@ import PrimaryIngredient from "./orderUI_components/PrimaryIngredient";
 import Toppings from "./orderUI_components/Toppings";
 import useFormValidity from "../../hooks/useFormValidity";
 
-export default function OrderUI({ closeCart, currentMenuItem }) {
+export default function OrderUI({
+  closeOrderUI,
+  currentMenuItem,
+  addItemToCart,
+}) {
   const {
     name,
     description,
@@ -178,20 +182,30 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
   // ADDD ORDER TO CART
   //******************** */
 
-  const addOrderToCart = () => {
-    console.log(name);
-    console.log(qty);
-    console.log(unitPrice);
-    console.log(chozenSize);
-    console.log(chozenDressing);
-    console.log(chozenPasta);
-    console.log(chozenSubstitutes);
-    console.log(chozenExtras);
-    console.log(chozenToppings);
+  const addToCart = () => {
+    closeOrderUI();
+
+    const newItem = { name, qty, unitPrice };
+
+    if (chozenSize) newItem.chozenSize = chozenSize;
+
+    if (chozenDressing !== "--- ---") newItem.chozenDressing = chozenDressing;
+
+    if (chozenPasta !== "--- ---") newItem.chozenPasta = chozenPasta;
+
+    if (chozenSubstitutes.length !== 0)
+      newItem.chozenSubstitutes = chozenSubstitutes;
+
+    if (chozenExtras.length !== 0) newItem.chozenExtras = chozenExtras;
+
+    if (Object.keys(chozenToppings).length !== 0)
+      newItem.chozenToppings = chozenToppings;
+
+    addItemToCart(newItem);
   };
 
   return (
-    <OrderUIContainer closeCart={closeCart}>
+    <OrderUIContainer closeOrderUI={closeOrderUI}>
       <FoodImage name={name} />
       <NameAndDescription name={name} description={description} />
       <SizeOptions availableSizes={availableSizes} handleSize={handleSize} />
@@ -241,7 +255,7 @@ export default function OrderUI({ closeCart, currentMenuItem }) {
         formIsValid={formIsValid}
         addHasBeenClicked={addHasBeenClicked}
         changeAddClickStatus={changeAddClickStatus}
-        addOrderToCart={addOrderToCart}
+        addToCart={addToCart}
         unitPrice={unitPrice}
         handleQty={handleQty}
       />

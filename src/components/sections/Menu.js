@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from "react";
+import React, { useCallback, useContext, useMemo } from "react";
 import styles from "./Menu.module.css";
 import MenuContext from "../../store/MenuContext";
 import MenuCategory from "../menu/MenuCategory";

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from "react";
+import React, { useRef, useEffect } from "react";
 import styles from "./MenuCategory.module.css";
 import MenuItem from "./MenuItem";
 
@@ -19,8 +19,6 @@ const addCategoryConstitutes = (constitutes, type, items) => {
 };
 
 const MenuCategory = ({ category, indicatorObserver }) => {
-  console.log("MenuCategory");
-
   const categoryRef = useRef(null);
   const {
     name,

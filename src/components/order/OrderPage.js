@@ -10,10 +10,11 @@ export default function OrderPage() {
 
   return ReactDom.createPortal(
     <>
-      <Overlay />
+      <Overlay closeOverlaypage={menuContext.closeOrderPage} />
       <OrderUI
-        closeCart={menuContext.closeOrderPage}
+        closeOrderUI={menuContext.closeOrderPage}
         currentMenuItem={menuContext.currentMenuItem}
+        addItemToCart={menuContext.addItemToCart}
       />
     </>,
     document.getElementById("portal")

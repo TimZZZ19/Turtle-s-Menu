@@ -7,7 +7,7 @@ export default React.memo(function OrderControl({
   qtyIsValid,
   addHasBeenClicked,
   changeAddClickStatus,
-  addOrderToCart,
+  addToCart,
   unitPrice,
   handleQty,
 }) {
@@ -44,8 +44,7 @@ export default React.memo(function OrderControl({
     changeAddClickStatus();
 
     if (formIsValid) {
-      console.log("Add to cart");
-      addOrderToCart();
+      addToCart();
     } else {
       console.log("Make invalid inputs red");
     }
