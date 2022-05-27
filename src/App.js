@@ -26,7 +26,7 @@ function App() {
         displayAddedMsg={displayAddedMsg}
         hideAddedMsg={hideAddedMsg}
       />
-      {addedMsgIsDisplayed && <AddedMsg />}
+      <AddedMsg addedMsgIsDisplayed={addedMsgIsDisplayed} />
       <CartPage />
     </MenuContextProvider>
   );

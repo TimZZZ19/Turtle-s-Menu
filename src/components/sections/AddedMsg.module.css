@@ -12,10 +12,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: appear 300ms ease-out;
+  /* animation: appear 300ms ease-out; */
+  /* animation: disappear 300ms ease-out; */
 }
 
-@keyframes appear {
+/* @keyframes appear {
   0% {
     opacity: 0;
   }
@@ -34,4 +35,25 @@
   100% {
     opacity: 1;
   }
-}
+} */
+
+/* @keyframes disappear {
+  0% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  60% {
+    opacity: 0.4;
+  }
+  80% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0;
+  }
+} */

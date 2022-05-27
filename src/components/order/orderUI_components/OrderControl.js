@@ -43,11 +43,7 @@ export default React.memo(function OrderControl({
   const onAddingToCart = () => {
     changeAddClickStatus();
 
-    if (formIsValid) {
-      addToCart();
-    } else {
-      console.log("Make invalid inputs red");
-    }
+    if (formIsValid) addToCart();
   };
 
   return (
