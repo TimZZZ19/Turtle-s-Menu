@@ -208,7 +208,7 @@ export default function OrderUI({
       displayAddedMsg();
       setTimeout(() => {
         hideAddedMsg();
-      }, 2000);
+      }, 800);
     }, 500);
   };
 

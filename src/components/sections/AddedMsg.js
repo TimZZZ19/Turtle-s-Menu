@@ -12,8 +12,8 @@ export default function AddedMsg({ addedMsgIsDisplayed }) {
 
   return (
     <>
-      {transition((style, item) =>
-        item ? (
+      {transition((style, component) =>
+        component ? (
           <animated.div
             style={style}
             className={`${styles["added-container"]} `}

@@ -6,7 +6,7 @@ export default function CartBtn() {
   const menuContext = useContext(MenuContext);
 
   return (
-    <button className={styles["cart-btn"]}>
+    <button onClick={menuContext.openCartPage} className={styles["cart-btn"]}>
       <div className={styles["cart-btn__content"]}>
         <span className={styles["cart-icon"]}>
           <ion-icon name="cart"></ion-icon>
