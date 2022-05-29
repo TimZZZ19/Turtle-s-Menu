@@ -1,14 +1,14 @@
 import React from "react";
 import styles from "./Button.module.css";
 
-export default function Button(props) {
+export default function Button({ type, onClick, privateClass, children }) {
   return (
     <button
-      onClick={props.onClick}
-      className={styles.button}
-      style={{ ...props }}
+      type={type}
+      onClick={onClick}
+      className={`${styles.button} ${privateClass}`}
     >
-      {props.children}
+      {children}
     </button>
   );
 }

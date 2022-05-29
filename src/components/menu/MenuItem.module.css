@@ -19,3 +19,19 @@
   text-align: left;
   width: 28rem;
 }
+
+.add-btn {
+  padding: 1rem;
+  width: 6rem;
+  height: 3rem;
+  align-self: end;
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #8b4513;
+}
+
+.add-btn:active {
+  background-color: #61300d;
+}

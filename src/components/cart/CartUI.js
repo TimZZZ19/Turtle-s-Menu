@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import styles from "./CartUI.module.css";
 import CartUIContainer from "./cartUI_components/CartUIContainer";
 import CartItem from "./cartUI_components/CartItem";
+import Button from "../reusables/Button";
 
 export default function CartUI({ closeCartPage, cartPageIsOpen, cartItems }) {
   const deliveryRef = useRef(null);
@@ -93,13 +94,19 @@ export default function CartUI({ closeCartPage, cartPageIsOpen, cartItems }) {
               <span className={styles["total"]}>{`$ ${22.99}`}</span>
             </div>
           </div>
-          <div className={styles["cart-btns"]}>
-            <button className={styles["empty-cart"]} type="button">
+          <div className={styles["cart-btns-container"]}>
+            <Button
+              type="button"
+              privateClass={`${styles["cart-btns"]} ${styles["empty-cart"]}`}
+            >
               EMPTY CART
-            </button>
-            <button className={styles["check-out"]} type="submit">
+            </Button>
+            <Button
+              type="submit"
+              privateClass={`${styles["cart-btns"]} ${styles["check-out"]}`}
+            >
               CHECK OUT
-            </button>
+            </Button>
           </div>
         </div>
       </form>

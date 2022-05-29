@@ -49,14 +49,9 @@ export default function MenuItem({ item }) {
       <p className={styles["item-description"]}>{description}</p>
       {addOns}
       <Button
+        type="button"
         onClick={openOrderPage}
-        width={"6rem"}
-        height={"3rem"}
-        alignSelf={"end"}
-        justifySelf={"end"}
-        display={"flex"}
-        alignItems={"center"}
-        justifyContent={"center"}
+        privateClass={styles["add-btn"]}
       >
         Add
       </Button>
