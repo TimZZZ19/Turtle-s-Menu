@@ -1,0 +1,101 @@
+.cart-heading {
+  margin-top: 2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.2rem solid #ccc;
+}
+
+.cart-heading p {
+  font-size: 3rem;
+}
+
+/* RECEIVING METHODS */
+.receiving-methods {
+  padding: 2rem 0;
+  border-bottom: 0.1rem solid #ccc;
+}
+
+.receiving-methods p {
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.receiving-methods div {
+  display: flex;
+  justify-content: space-around;
+}
+
+.receiving-methods span {
+  font-size: 1.6rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* CART ITEMS */
+
+.cart-items {
+  padding: 2rem 0;
+  border-bottom: 0.1rem solid #ccc;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* CART CONTROL  */
+.cart-control {
+  padding: 2rem 0;
+  position: sticky;
+  bottom: 0;
+  background-color: white;
+  border-top: 0.2rem solid #ccc;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+/* cart summary */
+.cart-summary {
+  font-size: 1.6rem;
+  padding: 0 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.subtotal-amount {
+  width: 6rem;
+  text-align: end;
+}
+
+.tip-amount {
+  width: 5.2rem;
+  height: 2.2rem;
+  text-align: center;
+}
+
+.tax-fees {
+}
+
+.total {
+  font-weight: 600;
+}
+
+/* cart buttons */
+.cart-btns {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 3rem;
+}
+
+.cart-btns button {
+  font-size: 1.6rem;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 2rem;
+}

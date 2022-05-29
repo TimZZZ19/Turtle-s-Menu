@@ -1,0 +1,67 @@
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.6rem;
+}
+
+/* LEFT COLUMN */
+.left-column {
+  display: flex;
+  gap: 1rem;
+}
+
+/* qty */
+.qty {
+  font-size: 1.4rem;
+  width: 4rem;
+  text-align: center;
+  margin-top: 0.2rem;
+}
+
+/* name column */
+.name-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.name {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.item-additional-info {
+  font-size: 1.5rem;
+}
+
+.toppings {
+  display: flex;
+  flex-direction: column;
+  width: 11rem;
+}
+
+.topping {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-control {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.3rem;
+}
+
+.item-control button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: rgb(20, 145, 20);
+}
+
+/* SUBTOTAL */
+.subtotal {
+  font-size: 1.4rem;
+  width: 6rem;
+  text-align: end;
+}

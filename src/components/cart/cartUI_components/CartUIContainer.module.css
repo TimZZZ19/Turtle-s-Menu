@@ -5,4 +5,7 @@
   right: 0;
   width: 38rem;
   background-color: white;
+  padding: 2rem;
+  padding-bottom: 0rem;
+  overflow-y: scroll;
 }

@@ -6,14 +6,16 @@ import CartUI from "./CartUI";
 
 export default function CartPage() {
   const menuContext = useContext(MenuContext);
-  if (!menuContext.cartPageIsOpen) return null;
-
-  const { closeCartPage } = menuContext;
+  const { closeCartPage, cartPageIsOpen, cartItems } = menuContext;
 
   return ReactDom.createPortal(
     <>
-      <Overlay closeOverlaypage={closeCartPage} />
-      <CartUI closeCartPage={closeCartPage} />
+      {cartPageIsOpen && <Overlay closeOverlaypage={closeCartPage} />}
+      <CartUI
+        closeCartPage={closeCartPage}
+        cartPageIsOpen={cartPageIsOpen}
+        cartItems={cartItems}
+      />
     </>,
     document.getElementById("portal")
   );
