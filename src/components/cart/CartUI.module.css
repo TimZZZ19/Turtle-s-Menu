@@ -57,7 +57,7 @@
 /* cart summary */
 .cart-summary {
   font-size: 1.6rem;
-  padding: 0 4rem;
+  padding: 0 3rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -90,7 +90,7 @@
 .cart-btns {
   display: flex;
   justify-content: space-between;
-  padding: 0 3rem;
+  padding: 0 2rem;
 }
 
 .cart-btns button {
@@ -98,4 +98,25 @@
   border: none;
   padding: 0.6rem 1.5rem;
   border-radius: 2rem;
+}
+
+.empty-cart {
+}
+
+.check-out {
+  cursor: pointer;
+  background-color: #8b4513;
+  color: white;
+  box-shadow: 0 5px 5px rgba(78, 78, 78, 0.6);
+  transition-property: transform, box-shadow;
+  transition-duration: 0.3s;
+}
+
+.check-out:hover {
+  transform: translateY(-0.3rem);
+  box-shadow: 0 10px 20px rgba(78, 78, 78, 0.6);
+}
+
+.check-out:active {
+  background-color: #61300d;
 }

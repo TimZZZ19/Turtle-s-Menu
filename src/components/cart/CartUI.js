@@ -94,8 +94,12 @@ export default function CartUI({ closeCartPage, cartPageIsOpen, cartItems }) {
             </div>
           </div>
           <div className={styles["cart-btns"]}>
-            <button type="button">EMPTY CART</button>
-            <button type="submit">CHECK OUT</button>
+            <button className={styles["empty-cart"]} type="button">
+              EMPTY CART
+            </button>
+            <button className={styles["check-out"]} type="submit">
+              CHECK OUT
+            </button>
           </div>
         </div>
       </form>

@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import styles from "./MenuItem.module.css";
 import AddOns from "./AddOns";
 import MenuContext from "../../store/MenuContext";
+import Button from "../reusables/Button";
 
 export default function MenuItem({ item }) {
   const { name, description, price, prices, substitutes, extras } = item;
@@ -47,9 +48,18 @@ export default function MenuItem({ item }) {
       {priceInfo}
       <p className={styles["item-description"]}>{description}</p>
       {addOns}
-      <button onClick={openOrderPage} className={styles["order-btn"]}>
+      <Button
+        onClick={openOrderPage}
+        width={"6rem"}
+        height={"3rem"}
+        alignSelf={"end"}
+        justifySelf={"end"}
+        display={"flex"}
+        alignItems={"center"}
+        justifyContent={"center"}
+      >
         Add
-      </button>
+      </Button>
     </li>
   );
 }
