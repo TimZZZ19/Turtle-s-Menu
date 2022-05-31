@@ -20,14 +20,16 @@ function App() {
 
   return (
     <MenuContextProvider>
-      <Header />
-      <Menu />
-      <OrderPage
-        displayAddedMsg={displayAddedMsg}
-        hideAddedMsg={hideAddedMsg}
-      />
-      <AddedMsg addedMsgIsDisplayed={addedMsgIsDisplayed} />
-      <CartPage />
+      <React.StrictMode>
+        <Header />
+        <Menu />
+        <OrderPage
+          displayAddedMsg={displayAddedMsg}
+          hideAddedMsg={hideAddedMsg}
+        />
+        <AddedMsg addedMsgIsDisplayed={addedMsgIsDisplayed} />
+        <CartPage />
+      </React.StrictMode>
     </MenuContextProvider>
   );
 }

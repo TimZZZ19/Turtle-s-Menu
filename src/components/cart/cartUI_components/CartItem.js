@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./CartItem.module.css";
 
-export default function CartItem({ item }) {
+export default function CartItem({
+  item,
+  removeItemFromCart,
+  increaseItemQty,
+  decreaseItemQty,
+}) {
   const {
+    id,
     name,
     qty,
     unitPrice,
@@ -53,6 +59,27 @@ export default function CartItem({ item }) {
     </>
   );
 
+  const handleRemove = () => {
+    removeItemFromCart(id);
+  };
+
+  const handleQty = (e) => {
+    const action = e.target.getAttribute("name");
+
+    switch (action) {
+      case "add-circle-outline":
+        increaseItemQty(id);
+        break;
+      case "remove-circle-outline":
+        if (qty > 1) {
+          decreaseItemQty(id);
+        }
+        break;
+    }
+  };
+
+  const secondaryClass = qty > 1 ? "" : `${styles.inactive}`;
+
   return (
     <li className={styles["cart-item"]}>
       <div className={styles["left-column"]}>
@@ -62,11 +89,27 @@ export default function CartItem({ item }) {
           <div className={styles["item-additional-info"]}>
             {itemAdditionalInfo}
           </div>
-          <div className={styles["item-control"]}>
-            <button className={styles["item-control"]} type="button">
-              EDIT
+          <div className={styles["item-qty-control"]}>
+            <button
+              className={`${styles["qty-btns"]} ${secondaryClass}`}
+              onClick={handleQty}
+              type="button"
+            >
+              <ion-icon name="remove-circle-outline"></ion-icon>
             </button>
-            <button className={styles["item-control"]} type="button">
+            <button
+              className={styles["qty-btns"]}
+              onClick={handleQty}
+              type="button"
+            >
+              <ion-icon name="add-circle-outline"></ion-icon>
+            </button>
+            <span>|</span>
+            <button
+              className={`${styles["remove-btn"]}`}
+              onClick={handleRemove}
+              type="button"
+            >
               REMOVE
             </button>
           </div>

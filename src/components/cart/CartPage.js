@@ -6,7 +6,15 @@ import CartUI from "./CartUI";
 
 export default function CartPage() {
   const menuContext = useContext(MenuContext);
-  const { closeCartPage, cartPageIsOpen, cartItems } = menuContext;
+  const {
+    closeCartPage,
+    cartPageIsOpen,
+    cartItems,
+    deliveryFee,
+    removeItemFromCart,
+    increaseItemQty,
+    decreaseItemQty,
+  } = menuContext;
 
   return ReactDom.createPortal(
     <>
@@ -15,6 +23,10 @@ export default function CartPage() {
         closeCartPage={closeCartPage}
         cartPageIsOpen={cartPageIsOpen}
         cartItems={cartItems}
+        deliveryFee={deliveryFee}
+        removeItemFromCart={removeItemFromCart}
+        increaseItemQty={increaseItemQty}
+        decreaseItemQty={decreaseItemQty}
       />
     </>,
     document.getElementById("portal")

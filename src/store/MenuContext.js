@@ -2,6 +2,7 @@ import React from "react";
 
 const MenuContext = React.createContext({
   menuItems: [],
+  deliveryFee: 0,
   currentMenuItem: {},
 
   orderPageIsOpen: false,
@@ -14,11 +15,9 @@ const MenuContext = React.createContext({
 
   cartItems: [],
   addItemToCart: () => {},
-
+  removeItemFromCart: () => {},
   increaseItemQty: () => {},
   decreaseItemQty: () => {},
-  removeItemFromCart: () => {},
-  editCartItem: () => {},
 });
 
 export default MenuContext;

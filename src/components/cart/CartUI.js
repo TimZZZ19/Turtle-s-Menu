@@ -1,23 +1,36 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import styles from "./CartUI.module.css";
 import CartUIContainer from "./cartUI_components/CartUIContainer";
 import CartItem from "./cartUI_components/CartItem";
 import Button from "../reusables/Button";
 
-export default function CartUI({ closeCartPage, cartPageIsOpen, cartItems }) {
-  const deliveryRef = useRef(null);
-  const pickUpRef = useRef(null);
+export default function CartUI({
+  closeCartPage,
+  cartPageIsOpen,
+  cartItems,
+  deliveryFee,
+  removeItemFromCart,
+  increaseItemQty,
+  decreaseItemQty,
+}) {
+  const [deliveryCharge, setDeliveryCharge] = useState(0);
+  const [tip, setTip] = useState("0.00");
 
   const handleSubmission = (e) => {
     e.preventDefault();
-    console.log(
-      deliveryRef.current.getAttribute("id"),
-      deliveryRef.current.checked
-    );
-    console.log(
-      pickUpRef.current.getAttribute("id"),
-      pickUpRef.current.checked
-    );
+    console.log(deliveryCharge);
+  };
+
+  const handleDeliveryInput = (e) => {
+    const option = e.target.getAttribute("id");
+    switch (option) {
+      case "delivery":
+        setDeliveryCharge(deliveryFee);
+        break;
+      case "pickup":
+        setDeliveryCharge(0);
+        break;
+    }
   };
 
   const receivingMethods = (
@@ -26,20 +39,20 @@ export default function CartUI({ closeCartPage, cartPageIsOpen, cartItems }) {
       <div>
         <span>
           <input
-            ref={deliveryRef}
             type="radio"
             id="delivery"
             name="receiving-methods"
+            onChange={handleDeliveryInput}
             required
           />
           <label htmlFor="delivery">Delivery</label>
         </span>
         <span>
           <input
-            ref={pickUpRef}
             type="radio"
             id="pickup"
             name="receiving-methods"
+            onChange={handleDeliveryInput}
             required
           />
           <label htmlFor="pickup">Pickup</label>
@@ -51,10 +64,25 @@ export default function CartUI({ closeCartPage, cartPageIsOpen, cartItems }) {
   const cartItemsList = (
     <ul className={styles["cart-items"]}>
       {cartItems.map((item) => (
-        <CartItem key={Math.random()} item={item} />
+        <CartItem
+          key={Math.random()}
+          item={item}
+          removeItemFromCart={removeItemFromCart}
+          increaseItemQty={increaseItemQty}
+          decreaseItemQty={decreaseItemQty}
+        />
       ))}
     </ul>
   );
+
+  const subtotal = cartItems
+    .reduce((accSum, item) => accSum + item.qty * item.unitPrice, 0)
+    .toFixed(2);
+
+  const handleTip = (e) => {
+    console.log(e.target.value);
+    setTip(e.target.value);
+  };
 
   return (
     <CartUIContainer
@@ -71,7 +99,7 @@ export default function CartUI({ closeCartPage, cartPageIsOpen, cartItems }) {
           <div className={styles["cart-summary"]}>
             <div className={styles["summary-item"]}>
               <span>Subtotal</span>
-              <span className={styles["subtotal-amount"]}>{`$ ${18.99}`}</span>
+              <span className={styles["subtotal-amount"]}>$ {subtotal}</span>
             </div>
             <div className={styles["summary-item"]}>
               <span>Tip</span>
@@ -79,9 +107,10 @@ export default function CartUI({ closeCartPage, cartPageIsOpen, cartItems }) {
                 <label htmlFor="tip-value">$&nbsp;</label>
                 <input
                   id="tip-value"
-                  type="number"
+                  type="text"
                   className={styles["tip-amount"]}
-                  defaultValue="0.00"
+                  value={tip}
+                  onChange={handleTip}
                 />
               </span>
             </div>

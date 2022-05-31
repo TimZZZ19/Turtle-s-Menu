@@ -187,7 +187,12 @@ export default function OrderUI({
   const addToCart = () => {
     closeOrderUI();
 
-    const newItem = { name, qty, unitPrice };
+    const newItem = {
+      id: Math.random(),
+      name,
+      qty,
+      unitPrice,
+    };
 
     if (chozenSize) newItem.chozenSize = chozenSize;
 
@@ -258,7 +263,6 @@ export default function OrderUI({
       )}
       <OrderControl
         qty={qty}
-        category={category}
         qtyIsValid={qtyIsValid}
         formIsValid={formIsValid}
         addHasBeenClicked={addHasBeenClicked}

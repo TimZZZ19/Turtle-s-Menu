@@ -45,18 +45,34 @@
   justify-content: space-between;
 }
 
-.item-control {
+.item-qty-control {
   display: flex;
   gap: 1rem;
   margin-top: 0.3rem;
+  align-items: center;
 }
 
-.item-control button {
+.item-qty-control button {
   background-color: transparent;
   border: none;
-  font-size: 1.2rem;
-  font-weight: 600;
   color: rgb(20, 145, 20);
+  cursor: pointer;
+}
+
+.qty-btns {
+  font-size: 1.7rem;
+  display: flex;
+  align-items: center;
+}
+
+.remove-btn {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.inactive {
+  color: #555 !important;
+  cursor: auto !important;
 }
 
 /* SUBTOTAL */

@@ -16,9 +16,22 @@ const unfreezeScrolling = () => {
 };
 
 const cartReducer = (items, action) => {
+  const copyOfItems = [...items];
+  const targetItemIndex = copyOfItems.findIndex(
+    (item) => item.id === action.id
+  );
+
   switch (action.type) {
     case "ADD":
-      return items.concat(action.payload);
+      return copyOfItems.concat(action.item);
+    case "REMOVE":
+      return copyOfItems.filter((item) => item.id !== action.id);
+    case "INCREASE":
+      copyOfItems[targetItemIndex].qty++;
+      return copyOfItems;
+    case "DECREASE":
+      copyOfItems[targetItemIndex].qty--;
+      return copyOfItems;
     default:
       return [];
   }
@@ -26,6 +39,7 @@ const cartReducer = (items, action) => {
 
 export default function MenuContextProvider({ children }) {
   const [menuItems, setMenuItems] = useState([]);
+  const [deliveryFee, setDeliveryFee] = useState(0);
   const [orderPageIsOpen, setOrderPageIsOpen] = useState(false);
   const [cartPageIsOpen, setCartPageIsOpen] = useState(false);
   const [currentMenuItem, setCurrentMenuItem] = useState({});
@@ -54,13 +68,16 @@ export default function MenuContextProvider({ children }) {
   };
 
   useEffect(() => {
-    fetch("https://turtle-s-menu-default-rtdb.firebaseio.com/MenuItems.json")
+    fetch(
+      "https://turtle-s-menu-default-rtdb.firebaseio.com/TurtlesMenuData.json"
+    )
       .then((response) => {
         if (!response.ok) throw new Error("Something went wrong!");
         return response.json();
       })
       .then((data) => {
-        setMenuItems(data);
+        setMenuItems(data.menuItems);
+        setDeliveryFee(data.otherInfo.deliveryFee);
       })
       .catch((error) => {
         console.log(error);
@@ -68,11 +85,24 @@ export default function MenuContextProvider({ children }) {
   }, []);
 
   const addItemToCart = (item) => {
-    dispatchCartAction({ type: "ADD", payload: item });
+    dispatchCartAction({ type: "ADD", item });
+  };
+
+  const removeItemFromCart = (id) => {
+    dispatchCartAction({ type: "REMOVE", id });
+  };
+
+  const increaseItemQty = (id) => {
+    dispatchCartAction({ type: "INCREASE", id });
+  };
+
+  const decreaseItemQty = (id) => {
+    dispatchCartAction({ type: "DECREASE", id });
   };
 
   const menuContext = {
     menuItems,
+    deliveryFee,
     currentMenuItem,
 
     orderPageIsOpen,
@@ -85,6 +115,9 @@ export default function MenuContextProvider({ children }) {
 
     cartItems,
     addItemToCart,
+    removeItemFromCart,
+    increaseItemQty,
+    decreaseItemQty,
   };
 
   return (

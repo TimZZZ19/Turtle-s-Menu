@@ -79,8 +79,8 @@
   text-align: center;
 }
 
-.tax-fees {
-}
+/* .tax-fees {
+} */
 
 .total {
   font-weight: 600;
@@ -99,11 +99,11 @@
 }
 
 .empty-cart {
-  color: #555;
+  color: gray !important;
 }
 
 .empty-cart:hover {
-  color: black;
+  color: black !important;
 }
 
 .check-out {
