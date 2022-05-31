@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import styles from "./CartUI.module.css";
 import CartUIContainer from "./cartUI_components/CartUIContainer";
 import CartItem from "./cartUI_components/CartItem";
@@ -80,8 +80,15 @@ export default function CartUI({
     .toFixed(2);
 
   const handleTip = (e) => {
-    console.log(e.target.value);
     setTip(e.target.value);
+  };
+
+  const total = (+subtotal + +tip + +deliveryCharge).toFixed(2);
+
+  const emtpyCart = () => {
+    cartItems.forEach((item) => {
+      removeItemFromCart(item.id);
+    });
   };
 
   return (
@@ -89,56 +96,67 @@ export default function CartUI({
       closeCartPage={closeCartPage}
       cartPageIsOpen={cartPageIsOpen}
     >
-      <div className={styles["cart-heading"]}>
-        <p>Cart</p>
-      </div>
-      <form onSubmit={handleSubmission}>
-        {receivingMethods}
-        {cartItemsList}
-        <div className={styles["cart-control"]}>
-          <div className={styles["cart-summary"]}>
-            <div className={styles["summary-item"]}>
-              <span>Subtotal</span>
-              <span className={styles["subtotal-amount"]}>$ {subtotal}</span>
-            </div>
-            <div className={styles["summary-item"]}>
-              <span>Tip</span>
-              <span>
-                <label htmlFor="tip-value">$&nbsp;</label>
-                <input
-                  id="tip-value"
-                  type="text"
-                  className={styles["tip-amount"]}
-                  value={tip}
-                  onChange={handleTip}
-                />
-              </span>
-            </div>
-            <div className={styles["summary-item"]}>
-              <span>Tax & Fees</span>
-              <span className={styles["tax-fees"]}>{`$ ${2.99}`}</span>
-            </div>
-            <div className={`${styles["summary-item"]} ${styles.total}`}>
-              <span>Total</span>
-              <span className={styles["total"]}>{`$ ${22.99}`}</span>
-            </div>
+      {cartItems.length === 0 ? (
+        <p className={styles["empty-msg"]}>Your cart is empty</p>
+      ) : (
+        <>
+          <div className={styles["cart-heading"]}>
+            <p>Cart</p>
           </div>
-          <div className={styles["cart-btns-container"]}>
-            <Button
-              type="button"
-              privateClass={`${styles["cart-btns"]} ${styles["empty-cart"]}`}
-            >
-              EMPTY CART
-            </Button>
-            <Button
-              type="submit"
-              privateClass={`${styles["cart-btns"]} ${styles["check-out"]}`}
-            >
-              CHECK OUT
-            </Button>
-          </div>
-        </div>
-      </form>
+          <form onSubmit={handleSubmission}>
+            {receivingMethods}
+            {cartItemsList}
+            <div className={styles["cart-control"]}>
+              <div className={styles["cart-summary"]}>
+                <div className={styles["summary-item"]}>
+                  <span>Subtotal</span>
+                  <span className={styles["amount"]}>$ {subtotal}</span>
+                </div>
+                <div className={styles["summary-item"]}>
+                  <span>Tip</span>
+                  <span>
+                    <label htmlFor="tip-value">$&nbsp;</label>
+                    <input
+                      id="tip-value"
+                      type="text"
+                      className={styles["tip-amount"]}
+                      value={tip}
+                      onChange={handleTip}
+                    />
+                  </span>
+                </div>
+                <div className={styles["summary-item"]}>
+                  <span>Delivery Fee</span>
+                  <span className={styles["amount"]}>
+                    $ {deliveryCharge.toFixed(2)}
+                  </span>
+                </div>
+                <div className={`${styles["summary-item"]} ${styles.total}`}>
+                  <span>Total</span>
+                  <span className={`${styles["total"]} ${styles["amount"]}`}>
+                    $ {total}
+                  </span>
+                </div>
+              </div>
+              <div className={styles["cart-btns-container"]}>
+                <Button
+                  type="button"
+                  privateClass={`${styles["cart-btns"]} ${styles["empty-cart"]}`}
+                  onClick={emtpyCart}
+                >
+                  EMPTY CART
+                </Button>
+                <Button
+                  type="submit"
+                  privateClass={`${styles["cart-btns"]} ${styles["check-out"]}`}
+                >
+                  CHECK OUT
+                </Button>
+              </div>
+            </div>
+          </form>
+        </>
+      )}
     </CartUIContainer>
   );
 }
