@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./CartUI.module.css";
 import CartUIContainer from "./cartUI_components/CartUIContainer";
 import CartItem from "./cartUI_components/CartItem";
@@ -12,6 +12,9 @@ export default function CartUI({
   removeItemFromCart,
   increaseItemQty,
   decreaseItemQty,
+  openEmptyMsg,
+  cartIsCleared,
+  resetEmptyMsg,
 }) {
   const [deliveryCharge, setDeliveryCharge] = useState(0);
   const [tip, setTip] = useState("0.00");
@@ -86,10 +89,17 @@ export default function CartUI({
   const total = (+subtotal + +tip + +deliveryCharge).toFixed(2);
 
   const emtpyCart = () => {
-    cartItems.forEach((item) => {
-      removeItemFromCart(item.id);
-    });
+    openEmptyMsg();
   };
+
+  useEffect(() => {
+    if (cartIsCleared) {
+      cartItems.forEach((item) => {
+        removeItemFromCart(item.id);
+      });
+      resetEmptyMsg();
+    }
+  }, [cartIsCleared]);
 
   return (
     <CartUIContainer

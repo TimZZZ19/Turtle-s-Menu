@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import TextBtn from "../../reusables/TextBtn";
 import styles from "./CartItem.module.css";
 
 export default function CartItem({
@@ -90,28 +91,19 @@ export default function CartItem({
             {itemAdditionalInfo}
           </div>
           <div className={styles["item-qty-control"]}>
-            <button
-              className={`${styles["qty-btns"]} ${secondaryClass}`}
+            <TextBtn
+              privateClass={`${styles["qty-btns"]} ${secondaryClass}`}
               onClick={handleQty}
-              type="button"
             >
               <ion-icon name="remove-circle-outline"></ion-icon>
-            </button>
-            <button
-              className={styles["qty-btns"]}
-              onClick={handleQty}
-              type="button"
-            >
+            </TextBtn>
+            <TextBtn privateClass={styles["qty-btns"]} onClick={handleQty}>
               <ion-icon name="add-circle-outline"></ion-icon>
-            </button>
+            </TextBtn>
             <span>|</span>
-            <button
-              className={`${styles["remove-btn"]}`}
-              onClick={handleRemove}
-              type="button"
-            >
+            <TextBtn privateClass={styles["remove-btn"]} onClick={handleRemove}>
               REMOVE
-            </button>
+            </TextBtn>
           </div>
         </div>
       </div>

@@ -4,7 +4,11 @@ import Overlay from "../reusables/Overlay";
 import MenuContext from "../../store/MenuContext";
 import CartUI from "./CartUI";
 
-export default function CartPage() {
+export default function CartPage({
+  openEmptyMsg,
+  cartIsCleared,
+  resetEmptyMsg,
+}) {
   const menuContext = useContext(MenuContext);
   const {
     closeCartPage,
@@ -27,6 +31,9 @@ export default function CartPage() {
         removeItemFromCart={removeItemFromCart}
         increaseItemQty={increaseItemQty}
         decreaseItemQty={decreaseItemQty}
+        openEmptyMsg={openEmptyMsg}
+        cartIsCleared={cartIsCleared}
+        resetEmptyMsg={resetEmptyMsg}
       />
     </>,
     document.getElementById("portal")
