@@ -18,6 +18,11 @@ const MenuContext = React.createContext({
   removeItemFromCart: () => {},
   increaseItemQty: () => {},
   decreaseItemQty: () => {},
+
+  deliveryInfo: {},
+  makeDeliveryChoice: () => {},
+
+  tip: "0.00",
 });
 
 export default MenuContext;

@@ -44,6 +44,13 @@ export default function MenuContextProvider({ children }) {
   const [cartPageIsOpen, setCartPageIsOpen] = useState(false);
   const [currentMenuItem, setCurrentMenuItem] = useState({});
   const [cartItems, dispatchCartAction] = useReducer(cartReducer, []);
+  const [deliveryInfo, setDeliveryInfo] = useState({
+    delivery: false,
+    pickup: false,
+    deliveryFee: 3,
+    pickupFee: 0,
+  });
+  const [tip, setTip] = useState("0.00");
 
   // Open and close the order page
   const openOrderPage = (item) => {
@@ -100,6 +107,30 @@ export default function MenuContextProvider({ children }) {
     dispatchCartAction({ type: "DECREASE", id });
   };
 
+  const makeDeliveryChoice = (choice) => {
+    switch (choice) {
+      case "delivery":
+        setDeliveryInfo((prevState) => {
+          return { ...prevState, delivery: true, pickup: false };
+        });
+        break;
+      case "pickup":
+        setDeliveryInfo((prevState) => {
+          return { ...prevState, delivery: false, pickup: true };
+        });
+        break;
+      case "reset":
+        setDeliveryInfo((prevState) => {
+          return { ...prevState, delivery: false, pickup: false };
+        });
+        break;
+    }
+  };
+
+  const handleTip = (value) => {
+    setTip(value);
+  };
+
   const menuContext = {
     menuItems,
     deliveryFee,
@@ -118,6 +149,12 @@ export default function MenuContextProvider({ children }) {
     removeItemFromCart,
     increaseItemQty,
     decreaseItemQty,
+
+    deliveryInfo,
+    makeDeliveryChoice,
+
+    tip,
+    handleTip,
   };
 
   return (

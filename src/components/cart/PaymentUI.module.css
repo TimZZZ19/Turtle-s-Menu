@@ -1,0 +1,64 @@
+.payment-heading {
+  margin-top: 2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.2rem solid #ccc;
+  font-size: 3rem;
+}
+
+.payment-section {
+  padding: 2rem 0;
+  border-bottom: 0.1rem solid #ccc;
+}
+
+.inputs-area {
+  font-size: 1.6rem;
+  margin-top: 1.5rem;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.input-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* CVC & ZIP */
+.input-row input {
+  width: 7rem;
+  margin-left: 1rem;
+}
+
+/* PAYMENT CONTROL */
+.payment-control {
+  padding: 2rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.payment-control button {
+  padding: 2rem;
+  font-size: 1.8rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 3.6rem;
+  cursor: pointer;
+}
+
+.go-back {
+  color: gray;
+}
+
+.confirm {
+  background-color: #8b4513;
+}
+
+.confirm:hover {
+  background-color: #61300d;
+}

@@ -1,39 +1,30 @@
 import React, { useEffect, useState } from "react";
 import styles from "./CartUI.module.css";
-import CartUIContainer from "./cartUI_components/CartUIContainer";
 import CartItem from "./cartUI_components/CartItem";
 import Button from "../reusables/Button";
 
 export default function CartUI({
-  closeCartPage,
-  cartPageIsOpen,
   cartItems,
-  deliveryFee,
   removeItemFromCart,
   increaseItemQty,
   decreaseItemQty,
   openEmptyMsg,
   cartIsCleared,
   resetEmptyMsg,
+  openPaymentUI,
+  deliveryInfo,
+  makeDeliveryChoice,
+  tip,
+  handleTip,
 }) {
-  const [deliveryCharge, setDeliveryCharge] = useState(0);
-  const [tip, setTip] = useState("0.00");
-
   const handleSubmission = (e) => {
     e.preventDefault();
-    console.log(deliveryCharge);
+    openPaymentUI();
   };
 
   const handleDeliveryInput = (e) => {
     const option = e.target.getAttribute("id");
-    switch (option) {
-      case "delivery":
-        setDeliveryCharge(deliveryFee);
-        break;
-      case "pickup":
-        setDeliveryCharge(0);
-        break;
-    }
+    makeDeliveryChoice(option);
   };
 
   const receivingMethods = (
@@ -45,6 +36,7 @@ export default function CartUI({
             type="radio"
             id="delivery"
             name="receiving-methods"
+            checked={deliveryInfo.delivery}
             onChange={handleDeliveryInput}
             required
           />
@@ -55,6 +47,7 @@ export default function CartUI({
             type="radio"
             id="pickup"
             name="receiving-methods"
+            checked={deliveryInfo.pickup}
             onChange={handleDeliveryInput}
             required
           />
@@ -82,9 +75,13 @@ export default function CartUI({
     .reduce((accSum, item) => accSum + item.qty * item.unitPrice, 0)
     .toFixed(2);
 
-  const handleTip = (e) => {
-    setTip(e.target.value);
+  const tipHandler = (e) => {
+    handleTip(e.target.value);
   };
+
+  const deliveryCharge = deliveryInfo.delivery
+    ? deliveryInfo.deliveryFee
+    : deliveryInfo.pickupFee;
 
   const total = (+subtotal + +tip + +deliveryCharge).toFixed(2);
 
@@ -98,18 +95,17 @@ export default function CartUI({
         removeItemFromCart(item.id);
       });
       resetEmptyMsg();
+      handleTip("0.00");
+      makeDeliveryChoice("reset");
     }
   }, [cartIsCleared]);
 
   return (
-    <CartUIContainer
-      closeCartPage={closeCartPage}
-      cartPageIsOpen={cartPageIsOpen}
-    >
+    <>
       {cartItems.length === 0 ? (
         <p className={styles["empty-msg"]}>Your cart is empty</p>
       ) : (
-        <>
+        <main>
           <div className={styles["cart-heading"]}>
             <p>Cart</p>
           </div>
@@ -131,7 +127,7 @@ export default function CartUI({
                       type="text"
                       className={styles["tip-amount"]}
                       value={tip}
-                      onChange={handleTip}
+                      onChange={tipHandler}
                     />
                   </span>
                 </div>
@@ -165,8 +161,8 @@ export default function CartUI({
               </div>
             </div>
           </form>
-        </>
+        </main>
       )}
-    </CartUIContainer>
+    </>
   );
 }
