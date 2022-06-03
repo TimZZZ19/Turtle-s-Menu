@@ -36,6 +36,14 @@
   margin-left: 1rem;
 }
 
+/* SUMMARY */
+.summary {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  border-bottom: 0.1rem solid #ccc;
+}
+
 /* PAYMENT CONTROL */
 .payment-control {
   padding: 2rem;

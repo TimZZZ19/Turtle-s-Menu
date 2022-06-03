@@ -2,7 +2,17 @@ import React, { useRef } from "react";
 import styles from "./PaymentUI.module.css";
 import Button from "../reusables/Button";
 
-export default function PaymentUI({ goBack }) {
+export default function PaymentUI({
+  goBack,
+  cartItems,
+  tip,
+  deliveryInfo,
+  total,
+  closeCartPage,
+  removeItemFromCart,
+  makeDeliveryChoice,
+  handleTip,
+}) {
   const nameInputRef = useRef(null);
   const phoneInputRef = useRef(null);
   const addressInputRef = useRef(null);
@@ -14,7 +24,38 @@ export default function PaymentUI({ goBack }) {
 
   const handleSubmission = (e) => {
     e.preventDefault();
-    console.log("submit");
+    const paymentInfo = {
+      name: nameInputRef.current.value,
+      phone: phoneInputRef.current.value,
+      address: addressInputRef.current.value,
+
+      card: cardInputRef.current.value,
+      expiration: expirationInputRef.current.value,
+      cvc: cvcInputRef.current.value,
+      zip: zipInputRef.current.value,
+    };
+
+    fetch("https://turtle-s-menu-default-rtdb.firebaseio.com/Orders.json", {
+      method: "POST",
+      body: JSON.stringify({
+        cartItems,
+        tip,
+        deliveryInfo,
+        total,
+        paymentInfo,
+      }),
+    });
+
+    closeCartPage();
+
+    // Reset everything
+    cartItems.forEach((item) => {
+      removeItemFromCart(item.id);
+    });
+    handleTip("0.00");
+    makeDeliveryChoice("reset");
+
+    goBack();
   };
 
   return (
@@ -81,6 +122,12 @@ export default function PaymentUI({ goBack }) {
             </span>
           </div>
         </div>
+
+        <span className={styles.summary}>
+          <p>Total</p>
+          <span>{`$ ${(+total).toFixed(2)}`}</span>
+        </span>
+
         <div className={styles["payment-control"]}>
           <Button
             onClick={goBack}

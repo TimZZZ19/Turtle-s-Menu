@@ -16,12 +16,8 @@ export default function CartUI({
   makeDeliveryChoice,
   tip,
   handleTip,
+  handleTotal,
 }) {
-  const handleSubmission = (e) => {
-    e.preventDefault();
-    openPaymentUI();
-  };
-
   const handleDeliveryInput = (e) => {
     const option = e.target.getAttribute("id");
     makeDeliveryChoice(option);
@@ -99,6 +95,12 @@ export default function CartUI({
       makeDeliveryChoice("reset");
     }
   }, [cartIsCleared]);
+
+  const handleSubmission = (e) => {
+    e.preventDefault();
+    handleTotal(total);
+    openPaymentUI();
+  };
 
   return (
     <>

@@ -51,6 +51,7 @@ export default function MenuContextProvider({ children }) {
     pickupFee: 0,
   });
   const [tip, setTip] = useState("0.00");
+  const [total, setTotal] = useState(0);
 
   // Open and close the order page
   const openOrderPage = (item) => {
@@ -131,6 +132,10 @@ export default function MenuContextProvider({ children }) {
     setTip(value);
   };
 
+  const handleTotal = (amount) => {
+    setTotal(amount);
+  };
+
   const menuContext = {
     menuItems,
     deliveryFee,
@@ -155,6 +160,9 @@ export default function MenuContextProvider({ children }) {
 
     tip,
     handleTip,
+
+    total,
+    handleTotal,
   };
 
   return (

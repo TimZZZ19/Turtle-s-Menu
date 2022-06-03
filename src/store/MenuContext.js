@@ -23,6 +23,10 @@ const MenuContext = React.createContext({
   makeDeliveryChoice: () => {},
 
   tip: "0.00",
+  handleTip: () => {},
+
+  total: 0,
+  handleTotal: () => {},
 });
 
 export default MenuContext;

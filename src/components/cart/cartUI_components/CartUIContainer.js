@@ -21,6 +21,8 @@ export default function CartUIContainer({
   makeDeliveryChoice,
   tip,
   handleTip,
+  total,
+  handleTotal,
 }) {
   const [cartUIIsOpen, setCartUIIsOpen] = useState(true);
   const [paymentUIIsOpen, setPaymentUIIsOpen] = useState(false);
@@ -60,9 +62,22 @@ export default function CartUIContainer({
                 makeDeliveryChoice={makeDeliveryChoice}
                 tip={tip}
                 handleTip={handleTip}
+                handleTotal={handleTotal}
               />
             )}
-            {paymentUIIsOpen && <PaymentUI goBack={goBack} />}
+            {paymentUIIsOpen && (
+              <PaymentUI
+                goBack={goBack}
+                cartItems={cartItems}
+                tip={tip}
+                deliveryInfo={deliveryInfo}
+                total={total}
+                closeCartPage={closeCartPage}
+                removeItemFromCart={removeItemFromCart}
+                makeDeliveryChoice={makeDeliveryChoice}
+                handleTip={handleTip}
+              />
+            )}
           </animated.div>
         ) : (
           ""

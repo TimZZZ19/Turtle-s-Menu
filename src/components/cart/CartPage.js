@@ -22,6 +22,8 @@ export default function CartPage({
     makeDeliveryChoice,
     tip,
     handleTip,
+    total,
+    handleTotal,
   } = menuContext;
 
   return ReactDom.createPortal(
@@ -43,6 +45,8 @@ export default function CartPage({
         makeDeliveryChoice={makeDeliveryChoice}
         tip={tip}
         handleTip={handleTip}
+        total={total}
+        handleTotal={handleTotal}
         // Payment-related info
       />
     </>,
